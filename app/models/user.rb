@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
     include DeviseTokenAuth::Concerns::User
+  
+  serialize :liked_profiles, Array
 
-  serialize :liked_friends, Array
-
-  def self.random_friend(ids)
+  def self.random_profile(ids)
     ids = ids.empty? ? [0] : ids
     Profile.where("id NOT IN (?)", ids).order("RANDOM()")
   end

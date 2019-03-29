@@ -7,7 +7,7 @@ class Home extends React.Component {
   state = { profiles: [], };
   
   componentDidMount() {
-    axios.get('/api/my_friends')
+    axios.get('/api/profiles')
       .then(res => this.setState({ profiles: res.data, }))
   }
   
@@ -51,23 +51,17 @@ class Home extends React.Component {
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <Button color="red" icon basic>
-                <Icon name="thumbs down" />
-              </Button>
-              <Button color="green" icon basic>
-                <Icon name="thumbs up" />
-              </Button>
-            </Card.Content>
-          </Card>
-          <Link to="/my_profiles">
-            <Button color="blue">
-              My profiles
-            </Button>
             <Button color="red" icon basic onClick={() => this.downVote(profile.id)}>
               <Icon name="thumbs down" />
             </Button>
             <Button color="green" icon basic onClick={() => this.upvote(profile.id)}>
               <Icon name="thumbs up" />
+            </Button>
+            </Card.Content>
+          </Card>
+          <Link to="/my_profiles">
+            <Button color="blue">
+              My profiles
             </Button>
           </Link>
         </div>
