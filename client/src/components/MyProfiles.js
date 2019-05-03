@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, Divider, Image, } from 'semantic-ui-react';
+import { Card, Divider, Image, Button, Icon, } from 'semantic-ui-react';
 
 class MyProfiles extends React.Component {
   state = { profiles: [], };
@@ -8,6 +8,10 @@ class MyProfiles extends React.Component {
   componentDidMount() {
     axios.get('/api/my_profiles')
       .then( res => this.setState({ profiles: res.data, }) );
+  }
+
+  handleDelete = () => {
+    axios.delete("./api/")
   }
 
   render() {
@@ -22,7 +26,18 @@ class MyProfiles extends React.Component {
               <Card.Header>
                 { profile.name }
               </Card.Header>
+              <Card.Meta>
+                {profile.location}
+              </Card.Meta>
             </Card.Content>
+            <Button
+              style={{ color: "#DA0909" }}
+              inverted
+              size="small"
+              onClick={() => this.handleDelete()}
+            >
+              <Icon name="trash alternate" />
+            </Button>
           </Card>
         )}
       </Card.Group>

@@ -12,11 +12,11 @@ class FetchUser extends React.Component {
     } else {
       if (this.checkLocalToken()) {
         axios.get('/api/auth/validate_token')
-          .then( res => {
+          .then(res => {
             setUser(res.data.data);
             this.loaded();
           })
-          .catch( res => {
+          .catch(res => {
             this.loaded();
           })
       } else {
@@ -39,8 +39,8 @@ class FetchUser extends React.Component {
 
 const ConnectedFetchUser = (props) => (
   <AuthConsumer>
-    { auth => 
-      <FetchUser { ...props } auth={auth} />
+    {auth =>
+      <FetchUser {...props} auth={auth} />
     }
   </AuthConsumer>
 )
